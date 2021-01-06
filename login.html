@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+  <title>爱E乐团</title>
+  <link rel="stylesheet" href="style/css/normalize.css">
+  <link rel="stylesheet" href="style/css/admin.css">
+</head>
+
+<body class="bggrey">
+  <section class="logres">
+    <div class="logo"></div>
+    <h1>爱E帐号登陆😄欢迎您<i id="welect"></i></h1>
+    <form action="index.html">
+      <input type="text" placeholder="用户名zhangsan" id="name" min="5" required>
+      <input type="password" placeholder="密码123" id="pad" required>
+      <button type="button" id="btn">立即登录</button>
+    </form>
+    <ul class="mm">
+      <a href="register.html">注册帐号</a>
+      <a href="index.html">返回主页</a>
+    </ul>
+  </section>
+  <footer class="footer">
+    <div>
+      <p>©2020 - 版权所有</p>
+    </div>
+  </footer>
+
+</body>
+
+<script>
+  window.onload = function () {
+    function getQueryString(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURI(r[2]);
+      return null;
+    }
+    var idCode = getQueryString('name');
+    if (idCode) {
+      document.getElementById('welect').innerText = '，' + idCode + '！';
+    }
+
+  }
+</script>
+<script src="style/js/jquery.js"></script>
+<script>
+  $(document).ready(function (e) {
+    if (localStorage.getItem("name")) $('#name').val(localStorage.getItem("name"));
+    if (localStorage.getItem("pad")) $('#pad').val(localStorage.getItem("pad"));
+    $('#btn').click(function () {
+      if ($('#name').val() != 'zhangsan' || $('#pad').val() != '123') {
+        alert('帐号密码错误');
+        return
+      }
+      localStorage.setItem("name", $('#name').val());
+      localStorage.setItem("pad", $('#pad').val());
+      window.location = 'index.html';
+    })
+  });
+</script>
+
+</html>
